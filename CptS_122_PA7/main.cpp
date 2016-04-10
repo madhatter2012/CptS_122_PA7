@@ -21,9 +21,6 @@
 
 #include "Simpletron.h"
 
-
-//using std::getline;
-
 int main()
 
 {
