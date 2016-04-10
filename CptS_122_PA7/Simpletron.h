@@ -11,13 +11,15 @@ using std::fstream;
 using std::string;
 using std::getline;
 
+const int ARRAY_SIZE = 1000;
+
 class Simpletron
 {
 private: 
-	
 	//private member variables
 	string instructions[10];
-	string memoryArray[10][10][10];
+	string memoryArray[ARRAY_SIZE];
+	
 
 public:
 	
@@ -29,11 +31,11 @@ public:
 
 	//setters
 	void setInstrucs(string newInstrucs, int i);
-	void setMemoryArray(string newMemory, int i, int j, int k);
+	void setMemoryArray(string newMemory, int i);
 	
 	//getters
 	string getInstrucs(int i);
-	string getMemoryArray(int i, int j, int k);
+	string getMemoryArray(int i);
 
 	//displays
 	void displayInstrucs();

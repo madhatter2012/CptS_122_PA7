@@ -4,23 +4,16 @@
 Simpletron::Simpletron()
 {
 	int x;
-	int y;
-	int z;
 
 	for (x = 0; x < 10; x++)
 	{
 		instructions[x] = { "+00000" };
 	}
 
-	for (x = 0; x < 10; x++)
+	for (x = 0; x < 1000; x++)
 	{
-		for (y = 0; y < 10; y++)
-		{
-			for (z = 0; z < 10; z++)
-			{
-			memoryArray[x][y][z] = { "+00000" };
-			}
-		}
+		memoryArray[x] = { "+00000" };
+		
 	}
 }
 
@@ -36,9 +29,9 @@ void Simpletron::setInstrucs(string newInstrucs, int i)
 	instructions[i] = newInstrucs;
 }
 
-void Simpletron::setMemoryArray(string newMemory, int i, int j, int k)
+void Simpletron::setMemoryArray(string newMemory, int i)
 {
-	memoryArray[i][j][k] = newMemory;
+	memoryArray[i]= newMemory;
 }
 
 string Simpletron::getInstrucs(int i)
@@ -46,9 +39,9 @@ string Simpletron::getInstrucs(int i)
 	return instructions[i];
 }
 
-string Simpletron::getMemoryArray(int i, int j, int k)
+string Simpletron::getMemoryArray(int i)
 {
-	return memoryArray[i][j][k];
+	return memoryArray[i];
 }
 
 void Simpletron::displayInstrucs()
@@ -66,19 +59,11 @@ void Simpletron::displayInstrucs()
 void Simpletron::displayMemoryArray()
 {
 	int i;
-	int j;
-	int k;
 	if (memoryArray != nullptr)
 	{
-		for (i = 0; i < 10; i++)
+	for (i = 0; i < 1000; i++)
 		{
-			for (j = 0; j < 10; j++)
-			{
-				for (k = 0; k < 10; k++)
-				{
-					cout << getMemoryArray(i, j, k);
-				}
-			}
+			cout << getMemoryArray(i);
 		}
 	}
 }

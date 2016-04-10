@@ -24,6 +24,9 @@
 int main()
 
 {
+
+
+
 	Simpletron *app = new Simpletron();
 	fstream * myFile = new fstream;
 	myFile->open("Example1.sml");
