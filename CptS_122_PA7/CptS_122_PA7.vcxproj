@@ -146,6 +146,7 @@
     <ClCompile Include="Simpletron.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="main.h" />
     <ClInclude Include="Simpletron.h" />
   </ItemGroup>
   <ItemGroup>
