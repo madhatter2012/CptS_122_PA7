@@ -22,6 +22,8 @@ int main() //main start
 	char line[10];
 	int intInstrucs;
 	int i = 0;
+	int j = 0;
+	//int k = 0;
 
 	Simpletron app; //instantiating simpletron object
 	fstream myFile; // filestream object
@@ -43,13 +45,18 @@ int main() //main start
 
 	do // do while loop for fetch, decode, and execute
 	{
+
 		app.fetch();
 
 		app.decode();
 
 		app.execute();
 
-	} while (app.getOperationCode(i) != 43);
+		j++;
+
+		app.setInstructionCounter(j);
+
+	} while (app.getOperationCode(i)!= 43);
 	
 	myFile.close(); //closing file
 	

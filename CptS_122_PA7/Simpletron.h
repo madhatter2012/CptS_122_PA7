@@ -39,17 +39,19 @@ private: //private member variables
 	int instructions[10]; //file instructions array
 	int memoryArray[1000]; //memory array
 
-	int accumulator; //represents accumulator register
-	int instructionCounter; //tracks the location of the memory
-	int operationCode; //indicates operation currently being performed
-	int instructionRegister; //accepts next instruction to be performed
-	int operand; //indicates memory location on which current instruction operates
+	int accumulator = 0; //represents accumulator register
+	int instructionCounter = 0; //tracks the location of the memory
+	int operationCode = 0; //indicates operation currently being performed
+	int instructionRegister = 0; //accepts next instruction to be performed
+	int operand = 0; //indicates memory location on which current instruction operates
 	
 public: //public member functions
 
 	//constructor
 	Simpletron(int accumulator = 0, int instructionCounter = 0, int operationCode = 0,
 		int instructionRegister = 0, int operand = 0);
+	//Simpletron(int accumulator, int instructionCounter, int operationCode,
+		//int instructionRegister, int operand);
 
 	//destructor
 	~Simpletron();
@@ -57,11 +59,13 @@ public: //public member functions
 	//setters
 	void setInstrucs(int newInstrucs, int i);
 	void setMemoryArray(int newMemory, int j);
+	void setInstructionCounter(int i);
 	
 	//getters
 	int getInstrucs(int i);
 	int getMemoryArray(int i);
 	int getOperationCode(int i);
+	int getInstructionCounter(int i);
 
 	//displays
 	void displayInstrucs();

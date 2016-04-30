@@ -35,6 +35,12 @@ void Simpletron::setMemoryArray(int newMemory, int j)
 	memoryArray[j]= newMemory;
 }
 
+void Simpletron::setInstructionCounter(int i)
+{
+	instructionCounter = i;
+}
+
+
 //getters
 int Simpletron::getInstrucs(int i)
 {
@@ -51,9 +57,15 @@ int Simpletron::getOperationCode(int i)
 	return operationCode;
 }
 
+int Simpletron::getInstructionCounter(int i)
+{
+	return instructionCounter;
+}
+
 //displays instruction array
 void Simpletron::displayInstrucs()
 {
+	cout << "Populating instruction array..." << endl;
 	int i; 
 	if (instructions != nullptr)
 	{
@@ -67,25 +79,30 @@ void Simpletron::displayInstrucs()
 //displays memory Array
 void Simpletron::displayMemoryArray()
 {
+	cout << "Populating memory array..." << endl;
 	int j;
 	for (j = 0; j < 1000; j++)
 	{
 		cout << getMemoryArray(j);
 	}
+	cout << endl;
 }
 
 //fetch - reads the next SML function from ***INSTRUCTIONS!***
 void Simpletron::fetch()
 {
+	cout << "Fetching..." << endl;
 	cout << endl << "instructionRegister is:" << instructionRegister << endl;
 	cout << "instructionCounter is:" << instructionCounter << endl;
-	cout << "instructions[instructionCounter] is" << instructions[instructionCounter] << endl;
+	cout << "instructions[0] is: " << instructions[0] << endl;
+	cout << "instructions[instructionCounter] is: " << instructions[instructionCounter] << endl;
 	instructionRegister = instructions[instructionCounter];
 }
 
 //decode - determine operationCode and operand of the instruction
 void Simpletron::decode()
 {
+	cout << "decoding..." << endl;
 operationCode = instructionRegister / 1000;
 operand = instructionRegister % 1000;
 }
@@ -93,6 +110,7 @@ operand = instructionRegister % 1000;
 //execute - perform the correct operation
 void Simpletron::execute()
 {
+	cout << "executing..." << endl;
 	switch (operationCode)
 	{
 	case READ: //read from keyboard into a specific memoryArray location
@@ -101,7 +119,8 @@ void Simpletron::execute()
 		break;
 
 	case WRITE: //write from a specific memoryArray location to screen
-		cout << "Writing..." << endl << memoryArray[operand];
+		cout << "Writing..." << endl;
+		cout << memoryArray[operand] << endl;
 		break;
 
 	case LOAD: //load from a specific memoryArray location to accumulator
@@ -115,30 +134,37 @@ void Simpletron::execute()
 		break;
 
 	case ADD: // add element from memoryArray to Accumulator (leaving result in accumulator)
+		cout << "Adding..." << endl;
 		accumulator += memoryArray[operand];
 		break;
 
 	case SUBTRACT: // subtract element from memoryArray to Accumulator (leaving result in accumulator)
+		cout << "Subtracting..." << endl;
 		accumulator -= memoryArray[operand];
 		break;
 
 	case DIVIDE: // divide element from memoryArray by Accumulator (leaving result in accumulator)
+		cout << "Dividing..." << endl;
 		accumulator /= memoryArray[operand];
 		break;
 
 	case MULTIPLY: // multiply element from memoryArray by Accumulator (leaving result in accumulator)
+		cout << "Multiplying..." << endl;
 		accumulator *= memoryArray[operand];
 		break;
 	
 	case MODULUS: //modulus etc.
+		cout << "Modulusing..." << endl;
 		accumulator %= memoryArray[operand];
 		break;
 
 	case EXPO: //exponentiation etc.
+		cout << "Expotentiating..." << endl;
 		accumulator = pow(accumulator, memoryArray[operand]);
 		break;
 
 	case BRANCH: //branch to a specific location in memory
+		cout << "Branching..." << endl;
 		if (operationCode != 43)
 			{
 				instructionCounter = operand - 1;
@@ -146,6 +172,7 @@ void Simpletron::execute()
 		break;
 
 	case BRANCHNEG: //branch to a specific location in memory if acc is neg
+		cout << "Brachneging..." << endl;
 		if (operationCode != 43 && accumulator < 0)
 			{
 				instructionCounter = operand - 1;
@@ -153,6 +180,7 @@ void Simpletron::execute()
 		break;
 
 	case BRANCHZERO: //branch to a specific location in memory if acc is zero
+		cout << "Branchzeroing..." << endl;
 		if (operationCode != 43 && accumulator == 0)
 			{
 				instructionCounter = operand - 1;
@@ -161,13 +189,14 @@ void Simpletron::execute()
 
 	case HALT: //ending program
 	{
+		cout << "Halting..." << endl;
 		cout << "*** Simpletron execution terminated ***";
 	}
 	break;
 
 	default: //for catching fatal errors
-		cout << "*** Fatal Error ***";
+			cout << "*** Fatal Error ***";
 
-	Simpletron::instructionCounter++; //incrementing instructionCounter
+Simpletron::instructionCounter++; //incrementing instructionCounter
 	}
 }
